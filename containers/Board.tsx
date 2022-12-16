@@ -31,7 +31,7 @@ function Board() {
     const [squares, setSquares] = useState(square);
     const [currentPlayer, setCurrentPlayer] = useState<"X" | "O">(player);
 
-    const [winner, setWinner] = useState(null);
+    const [winner, setWinner] = useState<any>(null);
 
     function reset() {
         setSquares(square)
@@ -55,7 +55,7 @@ function Board() {
         if (w) {
             setWinner(w)
         }
-        if (!w && !squares.filter(square => !square).length) {
+        if (!w && !squares.filter((square: number) => !square).length) {
             setWinner("BOTH")
         }
 
@@ -63,9 +63,9 @@ function Board() {
 
     return (<>
         <div>
-            <p>Hey {currentPlayer}, its your turn</p>
-            {winner && winner !== "BOTH" && <p> Congratulations {winner} </p>}
-            {winner && winner === 'BOTH' && <p> Congratulations youre both winners</p>}
+            {!winner && <p>Hey {currentPlayer}, its your turn</p>}
+            {winner && winner !== "BOTH" && <p> Congratulations, The winner is {winner} </p>}
+            {winner && winner === 'BOTH' && <p> Congratulations you_re both winners</p>}
             <div className='grid'>
                 {
                     Array(9)
